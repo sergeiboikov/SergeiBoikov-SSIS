@@ -1,0 +1,257 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/7/2020 12:19:33 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SERGEYPC"
+  DTS:CreatorName="SergeyPC\Сергей"
+  DTS:DTSID="{EEAA29D5-B471-49E7-B62C-76C90C2EE343}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.123"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="35"
+  DTS:VersionGUID="{122E99A5-3F73-4D7C-A0EC-4C489B998328}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[SSIS Connection Manager for Azure Storage]"
+      DTS:CreationName="AzureStorage"
+      DTS:DTSID="{9BFA47EB-14CF-47F1-8CD6-655C71B936CE}"
+      DTS:ObjectName="SSIS Connection Manager for Azure Storage">
+      <DTS:ObjectData>
+        <AzureStorageConnectionManager
+          ConnectionString="AccountName=covidsbstac;DefaultEndpointsProtocol=https;EndpointSuffix=core.windows.net;">
+          <AccountKey
+            Sensitive="1"
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACudAaEqkrkiwHe2DeBalxgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAQRLfYf/YvXvmiuTcdvWoSRTPenKrC/AJN3kGGh7vNLAAAAAAOgAAAAAIAACAAAAB9eAd2QLbiJKH8NxyrtaP7JO0IFMWvndxZuSbcomMzBcAAAAAqdObaZUf9/k+kUpHwvgU+Mim/U9ugQ9OuDOu1wczcmLdYNH2C7PB9WZbjxTCSP/Gq7VOt/s7oYqshRl/zmqJvJMZPXj84eketl7bkeUEJ+RASpHJ2+eRVX/+CBJiChguHOJPA9NX/EkveFG+yH09eEpUoZ/l3iAlYmvHP7y9EgNjtE/YxV2pVhjrTpZtFrvcFPw6V5XZDgjvy8ZDO1/XvzNHmKD82PzCAQC2bkYp5pDB+SM3Yjmy8oML2FEzRvYtAAAAAWgiiMbvdqKNq+7DjshKT9i4BFe1Hxdn42XOk+wHrFuULGBdewwmKRapRx4yggBNTnd8jrumTj+NfTsvo9FJ6GQ</AccountKey>
+        </AzureStorageConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{25301D85-EA6E-45E6-8C06-F0244B99496E}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::ProjectWorkingDirectory] + &quot;\\Scripts&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="ScriptsWorkingFolder">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\GIT\Quantori\SergeiBoikov-SSIS\SergeiBoikov-SSIS\Scripts</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{255B3EB4-465E-4A73-BC00-C9DF04C9A8C2}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::ProjectWorkingDirectory] + &quot;\\SourceFiles&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourceFileFolder">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\GIT\Quantori\SergeiBoikov-SSIS\SergeiBoikov-SSIS\SourceFiles</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{DB6F67A2-412E-42E0-835E-13CAE031E3D1}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="SourceFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">CoordStatusMA.csv</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{879B83A9-7B3B-49EE-983D-9972747C5500}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[User::ScriptsWorkingFolder] + &quot;\\TransformCsv.py&quot;"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="TransformCsvScript">
+      <DTS:VariableValue
+        DTS:DataType="8">C:\GIT\Quantori\SergeiBoikov-SSIS\SergeiBoikov-SSIS\Scripts\TransformCsv.py</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\CovidFile Download Task"
+      DTS:CreationName="CopyFromBlobTask"
+      DTS:Description="Download CovidFile from Azure Blob Storage"
+      DTS:DTSID="{19BFBF74-240D-47A5-B76E-4AA23ED511C5}"
+      DTS:ExecutableType="CopyFromBlobTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="CovidFile Download Task"
+      DTS:TaskContact="Azure Blob Download Task; (C) Microsoft Corporation; All Rights Reserved"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="FileName">@[User::SourceFileName]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="LocalDirectory">@[User::SourceFileFolder]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <CopyFromBlobTask
+          ConnectionId="{9BFA47EB-14CF-47F1-8CD6-655C71B936CE}"
+          BlobContainer="covidsbcontainer"
+          LocalDirectory="C:\GIT\Quantori\SergeiBoikov-SSIS\SergeiBoikov-SSIS\SourceFiles"
+          FileNameFilter="CoordStatusMA.csv"
+          TimeRangeFrom="1/1/1900 12:00:00 AM +04:00"
+          TimeRangeTo="12/31/2200 12:00:00 AM +04:00"
+          SearchRecursively="0" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\CovidFile Transform Task"
+      DTS:CreationName="Microsoft.ExecuteProcess"
+      DTS:Description="Transform CovidCsv Task"
+      DTS:Disabled="True"
+      DTS:DTSID="{86B23348-65E2-4EFC-94DE-565CB5520EB5}"
+      DTS:ExecutableType="Microsoft.ExecuteProcess"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="CovidFile Transform Task"
+      DTS:TaskContact="Execute Process Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="Arguments">(DT_WSTR, 255) @[User::TransformCsvScript] + " " +  @[User::SourceFileFolder] + "\\" +  @[User::SourceFileName]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="Executable">@[$Project::PythonExecutable]</DTS:PropertyExpression>
+      <DTS:PropertyExpression
+        DTS:Name="WorkingDirectory">@[User::ScriptsWorkingFolder]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <ExecuteProcessData
+          Executable="C:\Python3\python.exe"
+          Arguments="C:\GIT\Quantori\SergeiBoikov-SSIS\SergeiBoikov-SSIS\Scripts\TransformCsv.py C:\GIT\Quantori\SergeiBoikov-SSIS\SergeiBoikov-SSIS\SourceFiles\CoordStatusMA.csv"
+          WorkingDirectory="C:\GIT\Quantori\SergeiBoikov-SSIS\SergeiBoikov-SSIS\Scripts"
+          StandardInputVariable="User::SourceFileFolder" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\File System Task"
+      DTS:CreationName="Microsoft.FileSystemTask"
+      DTS:Description="File System Task"
+      DTS:DTSID="{5E2ACEA2-89DA-41D4-925D-C981764A4BCA}"
+      DTS:ExecutableType="Microsoft.FileSystemTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="File System Task"
+      DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <FileSystemData
+          TaskOperationType="DeleteDirectoryContent"
+          TaskSourcePath="User::SourceFileFolder"
+          TaskIsSourceVariable="True" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{3317B158-DCB8-4C04-B74B-121B0434F865}"
+      DTS:From="Package\CovidFile Download Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\CovidFile Transform Task" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{9014482A-A275-4831-91A9-B5CDB1B33AD9}"
+      DTS:From="Package\File System Task"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\CovidFile Download Task" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="204,42"
+          Id="Package\CovidFile Download Task"
+          TopLeft="237.5,171.5" />
+        <NodeLayout
+          Size="198,42"
+          Id="Package\CovidFile Transform Task"
+          TopLeft="240.5,275.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="339.5,213.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,62"
+              Start="0,0"
+              End="0,54.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Prepare_CovidFile"
+          ParentId="Package"
+          Size="171,46"
+          Id="5ff44007-af93-4056-b0fc-55599ac9b53e"
+          TopLeft="257,13.5">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="18"
+              Color="#FFFFFF00">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <NodeLayout
+          Size="158,42"
+          Id="Package\File System Task"
+          TopLeft="257,72" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="337.75,114">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,57.5"
+              Start="0,0"
+              End="0,50">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
