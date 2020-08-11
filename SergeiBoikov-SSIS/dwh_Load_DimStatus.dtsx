@@ -1,0 +1,1068 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/10/2020 1:38:11 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SERGEYPC"
+  DTS:CreatorName="SergeyPC\Сергей"
+  DTS:DTSID="{3AD30F78-9729-45B7-BEC2-99E9DADEC890}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.123"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="19"
+  DTS:VersionGUID="{F3EF1F99-C54E-44FC-83A0-EC69A1B0C73F}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\SEQC Load Data to dwh_DimStatus"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{B847A8E7-71A0-4789-AFD8-7B2B79387C1E}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQC Load Data to dwh_DimStatus">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{5CF94E1D-21C4-47B1-8ED5-D673FAF17C34}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DFT Load Data from Staging_Covid_typed to dwh_DimStatus"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Conditional Split"
+                  componentClassID="Microsoft.ConditionalSplit"
+                  contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+                  name="Conditional Split"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Conditional Split.Inputs[Conditional Split Input]"
+                      description="Input to the Conditional Split Transformation"
+                      name="Conditional Split Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Conditional Split.Inputs[Conditional Split Input].Columns[StatusCodeSRC]"
+                          cachedDataType="ui1"
+                          cachedName="StatusCodeSRC"
+                          cachedSortKeyPosition="1"
+                          lineageId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Merge Join SRC Status and DST Status.Outputs[Merge Join Output].Columns[StatusCodeSRC]" />
+                        <inputColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Conditional Split.Inputs[Conditional Split Input].Columns[StatusCodeDST]"
+                          cachedDataType="ui1"
+                          cachedName="StatusCodeDST"
+                          lineageId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Merge Join SRC Status and DST Status.Outputs[Merge Join Output].Columns[StatusCodeDST]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Conditional Split.Outputs[DeletedStatus]"
+                      description="Output 1 of the Conditional Split Transformation"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      exclusionGroup="1"
+                      name="DeletedStatus"
+                      synchronousInputId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Conditional Split.Inputs[Conditional Split Input]"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                          name="Expression">[ISNULL](#{Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Merge Join SRC Status and DST Status.Outputs[Merge Join Output].Columns[StatusCodeSRC]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the friendly version of the expression. This expression version uses column names."
+                          expressionType="Notify"
+                          name="FriendlyExpression">ISNULL(StatusCodeSRC)</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                          name="EvaluationOrder">0</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Conditional Split.Outputs[NewStatus]"
+                      description="Output 2 of the Conditional Split Transformation"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      exclusionGroup="1"
+                      name="NewStatus"
+                      synchronousInputId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Conditional Split.Inputs[Conditional Split Input]"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                          name="Expression">[ISNULL](#{Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Merge Join SRC Status and DST Status.Outputs[Merge Join Output].Columns[StatusCodeDST]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the friendly version of the expression. This expression version uses column names."
+                          expressionType="Notify"
+                          name="FriendlyExpression">ISNULL(StatusCodeDST)</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                          name="EvaluationOrder">1</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Conditional Split.Outputs[Conditional Split Default Output]"
+                      description="Default Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      name="Conditional Split Default Output"
+                      synchronousInputId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Conditional Split.Inputs[Conditional Split Input]">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          name="IsDefaultOut">true</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Conditional Split.Outputs[Conditional Split Error Output]"
+                      description="Error Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Conditional Split Error Output"
+                      synchronousInputId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Conditional Split.Inputs[Conditional Split Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Derived Column.Inputs[Derived Column Input].Columns[StatusCodeSRC]"
+                          cachedDataType="ui1"
+                          cachedName="StatusCodeSRC"
+                          cachedSortKeyPosition="1"
+                          lineageId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Merge Join SRC Status and DST Status.Outputs[Merge Join Output].Columns[StatusCodeSRC]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Derived Column.Outputs[Derived Column Output].Columns[StatusName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          length="2450"
+                          lineageId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Derived Column.Outputs[Derived Column Output].Columns[StatusName]"
+                          name="StatusName"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[REPLACE]([REPLACE]((DT_WSTR,50)[REPLACE]((DT_WSTR,50)#{Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Merge Join SRC Status and DST Status.Outputs[Merge Join Output].Columns[StatusCodeSRC]},"1","Status1"),"2","Status2"),"4","Status4")</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">REPLACE(REPLACE((DT_WSTR,50)REPLACE((DT_WSTR,50)StatusCodeSRC,"1","Status1"),"2","Status2"),"4","Status4")</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Merge Join SRC Status and DST Status"
+                  componentClassID="Microsoft.MergeJoin"
+                  contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+                  name="Merge Join SRC Status and DST Status"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the type of join to perform."
+                      name="JoinType"
+                      typeConverter="JoinType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the number of columns in the ordering key."
+                      name="NumKeyColumns">1</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the null values are treated as equal values."
+                      name="TreatNullsAsEqual">true</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Indicates the requested maximum buffers per input before blocking."
+                      name="MaxBuffersPerInput">5</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Merge Join SRC Status and DST Status.Inputs[Merge Join Left Input]"
+                      hasSideEffects="true"
+                      name="Merge Join Left Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Merge Join SRC Status and DST Status.Inputs[Merge Join Left Input].Columns[StatusCodeSRC]"
+                          cachedDataType="ui1"
+                          cachedName="StatusCodeSRC"
+                          cachedSortKeyPosition="1"
+                          lineageId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Output].Columns[StatusCodeSRC]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                    <input
+                      refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Merge Join SRC Status and DST Status.Inputs[Merge Join Right Input]"
+                      hasSideEffects="true"
+                      name="Merge Join Right Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Merge Join SRC Status and DST Status.Inputs[Merge Join Right Input].Columns[StatusCodeDST]"
+                          cachedDataType="ui1"
+                          cachedName="StatusCodeDST"
+                          cachedSortKeyPosition="1"
+                          lineageId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC dwh_DimStatus.Outputs[OLE DB Source Output].Columns[StatusCodeDST]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Merge Join SRC Status and DST Status.Outputs[Merge Join Output]"
+                      isSorted="true"
+                      name="Merge Join Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Merge Join SRC Status and DST Status.Outputs[Merge Join Output].Columns[StatusCodeSRC]"
+                          dataType="ui1"
+                          lineageId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Merge Join SRC Status and DST Status.Outputs[Merge Join Output].Columns[StatusCodeSRC]"
+                          name="StatusCodeSRC"
+                          sortKeyPosition="1">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Merge Join SRC Status and DST Status.Inputs[Merge Join Left Input].Columns[StatusCodeSRC]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Merge Join SRC Status and DST Status.Outputs[Merge Join Output].Columns[StatusCodeDST]"
+                          dataType="ui1"
+                          lineageId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Merge Join SRC Status and DST Status.Outputs[Merge Join Output].Columns[StatusCodeDST]"
+                          name="StatusCodeDST">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Merge Join SRC Status and DST Status.Inputs[Merge Join Right Input].Columns[StatusCodeDST]}</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLEDST dwh_DimStatus"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLEDST dwh_DimStatus"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dwh].[DimStatus]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLEDST dwh_DimStatus.Connections[OleDbConnection]"
+                      connectionManagerID="{5B6F6622-B329-4583-9F70-333750645E3E}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[localhost.SergeiBoikov-DWH]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLEDST dwh_DimStatus.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLEDST dwh_DimStatus.Inputs[OLE DB Destination Input].Columns[StatusName]"
+                          cachedDataType="wstr"
+                          cachedLength="2450"
+                          cachedName="StatusName"
+                          externalMetadataColumnId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLEDST dwh_DimStatus.Inputs[OLE DB Destination Input].ExternalColumns[StatusName]"
+                          lineageId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Derived Column.Outputs[Derived Column Output].Columns[StatusName]" />
+                        <inputColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLEDST dwh_DimStatus.Inputs[OLE DB Destination Input].Columns[StatusCodeSRC]"
+                          cachedDataType="ui1"
+                          cachedName="StatusCodeSRC"
+                          cachedSortKeyPosition="1"
+                          externalMetadataColumnId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLEDST dwh_DimStatus.Inputs[OLE DB Destination Input].ExternalColumns[StatusCode]"
+                          lineageId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Merge Join SRC Status and DST Status.Outputs[Merge Join Output].Columns[StatusCodeSRC]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLEDST dwh_DimStatus.Inputs[OLE DB Destination Input].ExternalColumns[DimStatusKey]"
+                          dataType="ui1"
+                          name="DimStatusKey" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLEDST dwh_DimStatus.Inputs[OLE DB Destination Input].ExternalColumns[StatusName]"
+                          dataType="wstr"
+                          length="255"
+                          name="StatusName" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLEDST dwh_DimStatus.Inputs[OLE DB Destination Input].ExternalColumns[StatusCode]"
+                          dataType="ui1"
+                          name="StatusCode" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLEDST dwh_DimStatus.Inputs[OLE DB Destination Input].ExternalColumns[sysCreatedAt]"
+                          dataType="dbTimeStamp"
+                          name="sysCreatedAt" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLEDST dwh_DimStatus.Inputs[OLE DB Destination Input].ExternalColumns[sysChangedAt]"
+                          dataType="dbTimeStamp"
+                          name="sysChangedAt" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLEDST dwh_DimStatus.Inputs[OLE DB Destination Input].ExternalColumns[sysCreatedBy]"
+                          dataType="i4"
+                          name="sysCreatedBy" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLEDST dwh_DimStatus.Inputs[OLE DB Destination Input].ExternalColumns[sysChangedBy]"
+                          dataType="i4"
+                          name="sysChangedBy" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLEDST dwh_DimStatus.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLEDST dwh_DimStatus.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLEDST dwh_DimStatus.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLEDST dwh_DimStatus.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLEDST dwh_DimStatus.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLEDST dwh_DimStatus.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC dwh_DimStatus"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLESRC dwh_DimStatus"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dwh].[DimStatus]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT [StatusCode] AS [StatusCodeDST]
+FROM [dwh].[DimStatus]
+WHERE  [DimStatusKey] &gt; -1
+ORDER BY [StatusCode]</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC dwh_DimStatus.Connections[OleDbConnection]"
+                      connectionManagerID="{5B6F6622-B329-4583-9F70-333750645E3E}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[localhost.SergeiBoikov-DWH]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC dwh_DimStatus.Outputs[OLE DB Source Output]"
+                      isSorted="true"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC dwh_DimStatus.Outputs[OLE DB Source Output].Columns[StatusCodeDST]"
+                          dataType="ui1"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC dwh_DimStatus.Outputs[OLE DB Source Output].ExternalColumns[StatusCodeDST]"
+                          lineageId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC dwh_DimStatus.Outputs[OLE DB Source Output].Columns[StatusCodeDST]"
+                          name="StatusCodeDST"
+                          sortKeyPosition="1"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC dwh_DimStatus.Outputs[OLE DB Source Output].ExternalColumns[StatusCodeDST]"
+                          dataType="ui1"
+                          name="StatusCodeDST" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC dwh_DimStatus.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC dwh_DimStatus.Outputs[OLE DB Source Error Output].Columns[StatusCodeDST]"
+                          dataType="ui1"
+                          lineageId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC dwh_DimStatus.Outputs[OLE DB Source Error Output].Columns[StatusCodeDST]"
+                          name="StatusCodeDST" />
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC dwh_DimStatus.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC dwh_DimStatus.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC dwh_DimStatus.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC dwh_DimStatus.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC Staging_Covid_typed"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLESRC Staging_Covid_typed"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT Status AS [StatusCodeSRC]
+FROM staging.Covid_typed
+ORDER BY Status</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC Staging_Covid_typed.Connections[OleDbConnection]"
+                      connectionManagerID="{5B6F6622-B329-4583-9F70-333750645E3E}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[localhost.SergeiBoikov-DWH]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Output]"
+                      isSorted="true"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Output].Columns[StatusCodeSRC]"
+                          dataType="ui1"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Output].ExternalColumns[StatusCodeSRC]"
+                          lineageId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Output].Columns[StatusCodeSRC]"
+                          name="StatusCodeSRC"
+                          sortKeyPosition="1"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Output].ExternalColumns[StatusCodeSRC]"
+                          dataType="ui1"
+                          name="StatusCodeSRC" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Error Output].Columns[StatusCodeSRC]"
+                          dataType="ui1"
+                          lineageId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Error Output].Columns[StatusCodeSRC]"
+                          name="StatusCodeSRC" />
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus.Paths[Derived Column Output]"
+                  endId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLEDST dwh_DimStatus.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus.Paths[Merge Join Output]"
+                  endId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Conditional Split.Inputs[Conditional Split Input]"
+                  name="Merge Join Output"
+                  startId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Merge Join SRC Status and DST Status.Outputs[Merge Join Output]" />
+                <path
+                  refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus.Paths[NewStatus]"
+                  endId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Derived Column.Inputs[Derived Column Input]"
+                  name="NewStatus"
+                  startId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Conditional Split.Outputs[NewStatus]" />
+                <path
+                  refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus.Paths[OLE DB Source Output]"
+                  endId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Merge Join SRC Status and DST Status.Inputs[Merge Join Left Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Output]" />
+                <path
+                  refId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus.Paths[OLE DB Source Output1]"
+                  endId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Merge Join SRC Status and DST Status.Inputs[Merge Join Right Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC dwh_DimStatus.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SEQC Load Data to dwh_DimStatus\SQL Dummy Rows"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{79320235-1468-4FCD-BA3E-DAB2392D5954}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL Dummy Rows"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"IF NOT EXISTS (SELECT 1 FROM [dwh].[DimStatus] WHERE [DimStatusKey]=-1)
+BEGIN 
+    SET IDENTITY_INSERT [dwh].[DimStatus] ON
+        INSERT INTO [dwh].[DimStatus]
+                   ([DimStatusKey], [StatusName], [StatusCode])
+             VALUES
+                   (-1, N'Unknown', -1)
+    SET IDENTITY_INSERT [dwh].[DimStatus] OFF
+END "</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{5B6F6622-B329-4583-9F70-333750645E3E}"
+              SQLTask:SqlStatementSource="IF NOT EXISTS (SELECT 1 FROM [dwh].[DimStatus] WHERE [DimStatusKey]=-1)&#xA;BEGIN &#xA;    SET IDENTITY_INSERT [dwh].[DimStatus] ON&#xA;        INSERT INTO [dwh].[DimStatus]&#xA;                   ([DimStatusKey], [StatusName], [StatusCode])&#xA;             VALUES&#xA;                   (-1, N'Unknown', -1)&#xA;    SET IDENTITY_INSERT [dwh].[DimStatus] OFF&#xA;END " xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SEQC Load Data to dwh_DimStatus.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{C717B542-67A8-4328-8017-01B6EA5AEBD4}"
+          DTS:From="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\SEQC Load Data to dwh_DimStatus\SQL Dummy Rows" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="367,42"
+          Id="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus"
+          TopLeft="29,36" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\SEQC Load Data to dwh_DimStatus\SQL Dummy Rows"
+          TopLeft="135,118" />
+        <EdgeLayout
+          Id="Package\SEQC Load Data to dwh_DimStatus.PrecedenceConstraints[Constraint]"
+          TopLeft="215.25,78">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,40"
+              Start="0,0"
+              End="0,32.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Add dummy rows for unknown vaules handling"
+          ParentId="Package\SEQC Load Data to dwh_DimStatus"
+          FontInfo="{x:Null}"
+          Size="279,40"
+          Id="075205e1-cec3-4436-94c4-6f462dcc51b5"
+          TopLeft="5.5,155" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="442,250"
+          Size="442,293"
+          Id="Package\SEQC Load Data to dwh_DimStatus"
+          TopLeft="152,105" />
+        <AnnotationLayout
+          Text="dwh_Load_DimStatus"
+          ParentId="Package"
+          Size="201,46"
+          Id="e6b67774-ed95-404f-9e96-26fd8dc0137e"
+          TopLeft="258,47">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="18"
+              Color="#FFFFFF00">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="261,42"
+          Id="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Merge Join SRC Status and DST Status"
+          TopLeft="233,256" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC dwh_DimStatus"
+          TopLeft="388,153" />
+        <NodeLayout
+          Size="194,42"
+          Id="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLEDST dwh_DimStatus"
+          TopLeft="267,530" />
+        <NodeLayout
+          Size="219,42"
+          Id="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC Staging_Covid_typed"
+          TopLeft="106,153" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Conditional Split"
+          TopLeft="287,352" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\Derived Column"
+          TopLeft="287,445" />
+        <EdgeLayout
+          Id="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus.Paths[OLE DB Source Output1]"
+          TopLeft="485,195">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-79.3333333333334,61"
+              Start="0,0"
+              End="-79.3333333333334,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.3769992383854" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.3769992383854"
+                    Point2="0,36.3769992383854"
+                    Point3="-4,36.3769992383854" />
+                  <mssgle:LineSegment
+                    End="-75.3333333333334,36.3769992383854" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-75.3333333333334,36.3769992383854"
+                    Point2="-79.3333333333334,36.3769992383854"
+                    Point3="-79.3333333333334,40.3769992383854" />
+                  <mssgle:LineSegment
+                    End="-79.3333333333334,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-55.1202604166667,41.3769992383854,30.9071875,9.568359375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus.Paths[OLE DB Source Output]"
+          TopLeft="215.5,195">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="105.833333333333,61"
+              Start="0,0"
+              End="105.833333333333,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,32.3769992383854" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,32.3769992383854"
+                    Point2="0,36.3769992383854"
+                    Point3="4,36.3769992383854" />
+                  <mssgle:LineSegment
+                    End="101.833333333333,36.3769992383854" />
+                  <mssgle:CubicBezierSegment
+                    Point1="101.833333333333,36.3769992383854"
+                    Point2="105.833333333333,36.3769992383854"
+                    Point3="105.833333333333,40.3769992383854" />
+                  <mssgle:LineSegment
+                    End="105.833333333333,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="37.4972526041665,41.3769992383854,30.838828125,9.5732421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus.Paths[NewStatus]"
+          TopLeft="364.25,394">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,51"
+              Start="0,0"
+              End="0,43.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,43.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-23.982578125,16.97314453125,87.9134765625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus.Paths[Merge Join Output]"
+          TopLeft="364,298">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,54"
+              Start="0,0"
+              End="0,46.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,46.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-15.4194140625,18.46337890625,30.838828125,9.5732421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus.Paths[Derived Column Output]"
+          TopLeft="364,487">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,43"
+              Start="0,0"
+              End="0,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-15.4194140625,12.96337890625,30.838828125,9.5732421875"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC dwh_DimStatus">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLEDST dwh_DimStatus">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Load Data to dwh_DimStatus\DFT Load Data from Staging_Covid_typed to dwh_DimStatus\OLESRC Staging_Covid_typed">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

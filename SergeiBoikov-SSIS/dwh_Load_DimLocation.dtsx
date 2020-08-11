@@ -1,0 +1,970 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/10/2020 3:21:13 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SERGEYPC"
+  DTS:CreatorName="SergeyPC\Сергей"
+  DTS:DTSID="{FDA9D359-7135-4C1A-9959-A7205FB0F504}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.123"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{033EB1F2-BEC7-40B0-8FCD-4EB8FE5F5D9A}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\SEQC Load Data to dwh_DimLocation"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{26882dba-cf1e-44a3-b886-3742526fa3fd}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQC Load Data to dwh_DimLocation">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{5d0fb812-9c84-4377-88d5-2f45319cb262}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DFT Load Data from Staging_Covid_typed to dwh_DimLocation"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Conditional Split"
+                  componentClassID="Microsoft.ConditionalSplit"
+                  contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+                  name="Conditional Split"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Conditional Split.Inputs[Conditional Split Input]"
+                      description="Input to the Conditional Split Transformation"
+                      name="Conditional Split Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Conditional Split.Inputs[Conditional Split Input].Columns[LatitudeDST]"
+                          cachedDataType="numeric"
+                          cachedName="LatitudeDST"
+                          cachedPrecision="5"
+                          cachedScale="3"
+                          lineageId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Merge Join.Outputs[Merge Join Output].Columns[LatitudeDST]" />
+                        <inputColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Conditional Split.Inputs[Conditional Split Input].Columns[LongitudeDST]"
+                          cachedDataType="numeric"
+                          cachedName="LongitudeDST"
+                          cachedPrecision="5"
+                          cachedScale="3"
+                          lineageId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Merge Join.Outputs[Merge Join Output].Columns[LongitudeDST]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Conditional Split.Outputs[NewLocation]"
+                      description="Output 1 of the Conditional Split Transformation"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      exclusionGroup="1"
+                      name="NewLocation"
+                      synchronousInputId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Conditional Split.Inputs[Conditional Split Input]"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                          name="Expression">[ISNULL](#{Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Merge Join.Outputs[Merge Join Output].Columns[LatitudeDST]}) || [ISNULL](#{Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Merge Join.Outputs[Merge Join Output].Columns[LongitudeDST]})</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the friendly version of the expression. This expression version uses column names."
+                          expressionType="Notify"
+                          name="FriendlyExpression">ISNULL(LatitudeDST) || ISNULL(LongitudeDST)</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                          name="EvaluationOrder">0</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Conditional Split.Outputs[Conditional Split Default Output]"
+                      description="Default Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      name="Conditional Split Default Output"
+                      synchronousInputId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Conditional Split.Inputs[Conditional Split Input]">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          name="IsDefaultOut">true</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Conditional Split.Outputs[Conditional Split Error Output]"
+                      description="Error Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Conditional Split Error Output"
+                      synchronousInputId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Conditional Split.Inputs[Conditional Split Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Merge Join"
+                  componentClassID="Microsoft.MergeJoin"
+                  contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+                  name="Merge Join"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the type of join to perform."
+                      name="JoinType"
+                      typeConverter="JoinType">1</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the number of columns in the ordering key."
+                      name="NumKeyColumns">2</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the null values are treated as equal values."
+                      name="TreatNullsAsEqual">true</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Indicates the requested maximum buffers per input before blocking."
+                      name="MaxBuffersPerInput">5</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Merge Join.Inputs[Merge Join Left Input]"
+                      hasSideEffects="true"
+                      name="Merge Join Left Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Merge Join.Inputs[Merge Join Left Input].Columns[LatitudeSRC]"
+                          cachedDataType="numeric"
+                          cachedName="LatitudeSRC"
+                          cachedPrecision="5"
+                          cachedScale="3"
+                          cachedSortKeyPosition="1"
+                          lineageId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Output].Columns[LatitudeSRC]" />
+                        <inputColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Merge Join.Inputs[Merge Join Left Input].Columns[LongitudeSRC]"
+                          cachedDataType="numeric"
+                          cachedName="LongitudeSRC"
+                          cachedPrecision="5"
+                          cachedScale="3"
+                          cachedSortKeyPosition="2"
+                          lineageId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Output].Columns[LongitudeSRC]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                    <input
+                      refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Merge Join.Inputs[Merge Join Right Input]"
+                      hasSideEffects="true"
+                      name="Merge Join Right Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Merge Join.Inputs[Merge Join Right Input].Columns[LatitudeDST]"
+                          cachedDataType="numeric"
+                          cachedName="LatitudeDST"
+                          cachedPrecision="5"
+                          cachedScale="3"
+                          cachedSortKeyPosition="1"
+                          lineageId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC dwh_DimLocation.Outputs[OLE DB Source Output].Columns[LatitudeDST]" />
+                        <inputColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Merge Join.Inputs[Merge Join Right Input].Columns[LongitudeDST]"
+                          cachedDataType="numeric"
+                          cachedName="LongitudeDST"
+                          cachedPrecision="5"
+                          cachedScale="3"
+                          cachedSortKeyPosition="2"
+                          lineageId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC dwh_DimLocation.Outputs[OLE DB Source Output].Columns[LongitudeDST]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Merge Join.Outputs[Merge Join Output]"
+                      isSorted="true"
+                      name="Merge Join Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Merge Join.Outputs[Merge Join Output].Columns[LatitudeSRC]"
+                          dataType="numeric"
+                          lineageId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Merge Join.Outputs[Merge Join Output].Columns[LatitudeSRC]"
+                          name="LatitudeSRC"
+                          precision="5"
+                          scale="3"
+                          sortKeyPosition="1">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Merge Join.Inputs[Merge Join Left Input].Columns[LatitudeSRC]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Merge Join.Outputs[Merge Join Output].Columns[LongitudeSRC]"
+                          dataType="numeric"
+                          lineageId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Merge Join.Outputs[Merge Join Output].Columns[LongitudeSRC]"
+                          name="LongitudeSRC"
+                          precision="5"
+                          scale="3"
+                          sortKeyPosition="2">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Merge Join.Inputs[Merge Join Left Input].Columns[LongitudeSRC]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Merge Join.Outputs[Merge Join Output].Columns[LatitudeDST]"
+                          dataType="numeric"
+                          lineageId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Merge Join.Outputs[Merge Join Output].Columns[LatitudeDST]"
+                          name="LatitudeDST"
+                          precision="5"
+                          scale="3">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Merge Join.Inputs[Merge Join Right Input].Columns[LatitudeDST]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Merge Join.Outputs[Merge Join Output].Columns[LongitudeDST]"
+                          dataType="numeric"
+                          lineageId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Merge Join.Outputs[Merge Join Output].Columns[LongitudeDST]"
+                          name="LongitudeDST"
+                          precision="5"
+                          scale="3">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Merge Join.Inputs[Merge Join Right Input].Columns[LongitudeDST]}</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLEDST dwh_DimLocation"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLEDST dwh_DimLocation"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dwh].[DimLocation]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLEDST dwh_DimLocation.Connections[OleDbConnection]"
+                      connectionManagerID="{5B6F6622-B329-4583-9F70-333750645E3E}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[localhost.SergeiBoikov-DWH]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLEDST dwh_DimLocation.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLEDST dwh_DimLocation.Inputs[OLE DB Destination Input].Columns[LatitudeSRC]"
+                          cachedDataType="numeric"
+                          cachedName="LatitudeSRC"
+                          cachedPrecision="5"
+                          cachedScale="3"
+                          cachedSortKeyPosition="1"
+                          externalMetadataColumnId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLEDST dwh_DimLocation.Inputs[OLE DB Destination Input].ExternalColumns[Latitude]"
+                          lineageId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Merge Join.Outputs[Merge Join Output].Columns[LatitudeSRC]" />
+                        <inputColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLEDST dwh_DimLocation.Inputs[OLE DB Destination Input].Columns[LongitudeSRC]"
+                          cachedDataType="numeric"
+                          cachedName="LongitudeSRC"
+                          cachedPrecision="5"
+                          cachedScale="3"
+                          cachedSortKeyPosition="2"
+                          externalMetadataColumnId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLEDST dwh_DimLocation.Inputs[OLE DB Destination Input].ExternalColumns[Longitude]"
+                          lineageId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Merge Join.Outputs[Merge Join Output].Columns[LongitudeSRC]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLEDST dwh_DimLocation.Inputs[OLE DB Destination Input].ExternalColumns[DimLocationKey]"
+                          dataType="i8"
+                          name="DimLocationKey" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLEDST dwh_DimLocation.Inputs[OLE DB Destination Input].ExternalColumns[Latitude]"
+                          dataType="numeric"
+                          name="Latitude"
+                          precision="5"
+                          scale="3" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLEDST dwh_DimLocation.Inputs[OLE DB Destination Input].ExternalColumns[Longitude]"
+                          dataType="numeric"
+                          name="Longitude"
+                          precision="5"
+                          scale="3" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLEDST dwh_DimLocation.Inputs[OLE DB Destination Input].ExternalColumns[sysCreatedAt]"
+                          dataType="dbTimeStamp"
+                          name="sysCreatedAt" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLEDST dwh_DimLocation.Inputs[OLE DB Destination Input].ExternalColumns[sysChangedAt]"
+                          dataType="dbTimeStamp"
+                          name="sysChangedAt" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLEDST dwh_DimLocation.Inputs[OLE DB Destination Input].ExternalColumns[sysCreatedBy]"
+                          dataType="i4"
+                          name="sysCreatedBy" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLEDST dwh_DimLocation.Inputs[OLE DB Destination Input].ExternalColumns[sysChangedBy]"
+                          dataType="i4"
+                          name="sysChangedBy" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLEDST dwh_DimLocation.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLEDST dwh_DimLocation.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLEDST dwh_DimLocation.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLEDST dwh_DimLocation.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLEDST dwh_DimLocation.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLEDST dwh_DimLocation.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC dwh_DimLocation"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLESRC dwh_DimLocation"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dwh].[DimStatus]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT Latitude AS [LatitudeDST], Longitude AS [LongitudeDST]
+FROM dwh.DimLocation
+ORDER BY Latitude, Longitude</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC dwh_DimLocation.Connections[OleDbConnection]"
+                      connectionManagerID="{5B6F6622-B329-4583-9F70-333750645E3E}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[localhost.SergeiBoikov-DWH]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC dwh_DimLocation.Outputs[OLE DB Source Output]"
+                      isSorted="true"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC dwh_DimLocation.Outputs[OLE DB Source Output].Columns[LatitudeDST]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC dwh_DimLocation.Outputs[OLE DB Source Output].ExternalColumns[LatitudeDST]"
+                          lineageId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC dwh_DimLocation.Outputs[OLE DB Source Output].Columns[LatitudeDST]"
+                          name="LatitudeDST"
+                          precision="5"
+                          scale="3"
+                          sortKeyPosition="1"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC dwh_DimLocation.Outputs[OLE DB Source Output].Columns[LongitudeDST]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC dwh_DimLocation.Outputs[OLE DB Source Output].ExternalColumns[LongitudeDST]"
+                          lineageId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC dwh_DimLocation.Outputs[OLE DB Source Output].Columns[LongitudeDST]"
+                          name="LongitudeDST"
+                          precision="5"
+                          scale="3"
+                          sortKeyPosition="2"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC dwh_DimLocation.Outputs[OLE DB Source Output].ExternalColumns[LatitudeDST]"
+                          dataType="numeric"
+                          name="LatitudeDST"
+                          precision="5"
+                          scale="3" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC dwh_DimLocation.Outputs[OLE DB Source Output].ExternalColumns[LongitudeDST]"
+                          dataType="numeric"
+                          name="LongitudeDST"
+                          precision="5"
+                          scale="3" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC dwh_DimLocation.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC dwh_DimLocation.Outputs[OLE DB Source Error Output].Columns[LatitudeDST]"
+                          dataType="numeric"
+                          lineageId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC dwh_DimLocation.Outputs[OLE DB Source Error Output].Columns[LatitudeDST]"
+                          name="LatitudeDST"
+                          precision="5"
+                          scale="3" />
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC dwh_DimLocation.Outputs[OLE DB Source Error Output].Columns[LongitudeDST]"
+                          dataType="numeric"
+                          lineageId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC dwh_DimLocation.Outputs[OLE DB Source Error Output].Columns[LongitudeDST]"
+                          name="LongitudeDST"
+                          precision="5"
+                          scale="3" />
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC dwh_DimLocation.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC dwh_DimLocation.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC dwh_DimLocation.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC dwh_DimLocation.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC Staging_Covid_typed"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLESRC Staging_Covid_typed"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DISTINCT ct.Latitude AS [LatitudeSRC], ct.Longitude AS [LongitudeSRC]
+FROM staging.Covid_typed ct
+ORDER BY ct.Latitude, ct.Longitude</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC Staging_Covid_typed.Connections[OleDbConnection]"
+                      connectionManagerID="{5B6F6622-B329-4583-9F70-333750645E3E}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[localhost.SergeiBoikov-DWH]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Output]"
+                      isSorted="true"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Output].Columns[LatitudeSRC]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Output].ExternalColumns[LatitudeSRC]"
+                          lineageId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Output].Columns[LatitudeSRC]"
+                          name="LatitudeSRC"
+                          precision="5"
+                          scale="3"
+                          sortKeyPosition="1"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Output].Columns[LongitudeSRC]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Output].ExternalColumns[LongitudeSRC]"
+                          lineageId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Output].Columns[LongitudeSRC]"
+                          name="LongitudeSRC"
+                          precision="5"
+                          scale="3"
+                          sortKeyPosition="2"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Output].ExternalColumns[LatitudeSRC]"
+                          dataType="numeric"
+                          name="LatitudeSRC"
+                          precision="5"
+                          scale="3" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Output].ExternalColumns[LongitudeSRC]"
+                          dataType="numeric"
+                          name="LongitudeSRC"
+                          precision="5"
+                          scale="3" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Error Output].Columns[LatitudeSRC]"
+                          dataType="numeric"
+                          lineageId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Error Output].Columns[LatitudeSRC]"
+                          name="LatitudeSRC"
+                          precision="5"
+                          scale="3" />
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Error Output].Columns[LongitudeSRC]"
+                          dataType="numeric"
+                          lineageId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Error Output].Columns[LongitudeSRC]"
+                          name="LongitudeSRC"
+                          precision="5"
+                          scale="3" />
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation.Paths[Merge Join Output]"
+                  endId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Conditional Split.Inputs[Conditional Split Input]"
+                  name="Merge Join Output"
+                  startId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Merge Join.Outputs[Merge Join Output]" />
+                <path
+                  refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation.Paths[NewLocation]"
+                  endId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLEDST dwh_DimLocation.Inputs[OLE DB Destination Input]"
+                  name="NewLocation"
+                  startId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Conditional Split.Outputs[NewLocation]" />
+                <path
+                  refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation.Paths[OLE DB Source Output]"
+                  endId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Merge Join.Inputs[Merge Join Left Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC Staging_Covid_typed.Outputs[OLE DB Source Output]" />
+                <path
+                  refId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation.Paths[OLE DB Source Output1]"
+                  endId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Merge Join.Inputs[Merge Join Right Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC dwh_DimLocation.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="377,42"
+          Id="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation"
+          TopLeft="29,36" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="442,133"
+          Size="442,176"
+          Id="Package\SEQC Load Data to dwh_DimLocation"
+          TopLeft="60,118" />
+        <AnnotationLayout
+          Text="dwh_Load_DimLocation"
+          ParentId="Package"
+          Size="218,46"
+          Id="67e8edba-97b2-4e08-944a-08975ec1fe70"
+          TopLeft="166,60">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="18"
+              Color="#FFFFFF00">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="130,42"
+          Id="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Merge Join"
+          TopLeft="303,168" />
+        <NodeLayout
+          Size="219,42"
+          Id="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC Staging_Covid_typed"
+          TopLeft="105,51" />
+        <NodeLayout
+          Size="204,42"
+          Id="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC dwh_DimLocation"
+          TopLeft="394,50" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\Conditional Split"
+          TopLeft="286,248" />
+        <NodeLayout
+          Size="204,42"
+          Id="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLEDST dwh_DimLocation"
+          TopLeft="261,372" />
+        <EdgeLayout
+          Id="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation.Paths[NewLocation]"
+          TopLeft="363.25,290">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,82"
+              Start="0,0"
+              End="0,74.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,74.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-28.44693359375,32.5146484375,56.8938671875,9.470703125"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation.Paths[Merge Join Output]"
+          TopLeft="365.75,210">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,38"
+              Start="0,0"
+              End="0,30.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,30.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation.Paths[OLE DB Source Output1]"
+          TopLeft="496,92">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="-107.666666666667,76"
+              Start="0,0"
+              End="-107.666666666667,68.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.0455927051672" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,41.0455927051672"
+                    Point2="0,45.0455927051672"
+                    Point3="-4,45.0455927051672" />
+                  <mssgle:LineSegment
+                    End="-103.666666666667,45.0455927051672" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-103.666666666667,45.0455927051672"
+                    Point2="-107.666666666667,45.0455927051672"
+                    Point3="-107.666666666667,49.0455927051672" />
+                  <mssgle:LineSegment
+                    End="-107.666666666667,68.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation.Paths[OLE DB Source Output]"
+          TopLeft="214.5,93">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="153.5,75"
+              Start="0,0"
+              End="153.5,67.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,33.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,33.5"
+                    Point2="0,37.5"
+                    Point3="4,37.5" />
+                  <mssgle:LineSegment
+                    End="149.5,37.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="149.5,37.5"
+                    Point2="153.5,37.5"
+                    Point3="153.5,41.5" />
+                  <mssgle:LineSegment
+                    End="153.5,67.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC dwh_DimLocation">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLESRC Staging_Covid_typed">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Load Data to dwh_DimLocation\DFT Load Data from Staging_Covid_typed to dwh_DimLocation\OLEDST dwh_DimLocation">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

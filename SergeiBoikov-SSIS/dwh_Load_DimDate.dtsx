@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="dwh_Load_DimDate"
   DTS:PackageType="5"
-  DTS:VersionBuild="5"
-  DTS:VersionGUID="{79F9AED4-BBDE-487C-8B55-A4047E22A017}">
+  DTS:VersionBuild="8"
+  DTS:VersionGUID="{0BCB75FF-6B14-48E8-B76E-F040E29F3085}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:Variables>
@@ -38,13 +38,13 @@
       <DTS:Variables />
       <DTS:Executables>
         <DTS:Executable
-          DTS:refId="Package\SEQC Load Data to dwh_DimDate\SQL Ceed dwh_DimDate by SP usp_DimDate_Populate"
+          DTS:refId="Package\SEQC Load Data to dwh_DimDate\SQL Seed dwh_DimDate by SP usp_DimDate_Populate"
           DTS:CreationName="Microsoft.ExecuteSQLTask"
           DTS:Description="Execute SQL Task"
           DTS:DTSID="{CC2F4FE4-5153-4BB4-9A41-1B8B79FEEDC1}"
           DTS:ExecutableType="Microsoft.ExecuteSQLTask"
           DTS:LocaleID="-1"
-          DTS:ObjectName="SQL Ceed dwh_DimDate by SP usp_DimDate_Populate"
+          DTS:ObjectName="SQL Seed dwh_DimDate by SP usp_DimDate_Populate"
           DTS:ThreadHint="0">
           <DTS:Variables />
           <DTS:ObjectData>
@@ -112,10 +112,10 @@
     design-time-name="Package">
     <LayoutInfo>
       <GraphLayout
-        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
         <NodeLayout
           Size="337,42"
-          Id="Package\SEQC Load Data to dwh_DimDate\SQL Ceed dwh_DimDate by SP usp_DimDate_Populate"
+          Id="Package\SEQC Load Data to dwh_DimDate\SQL Seed dwh_DimDate by SP usp_DimDate_Populate"
           TopLeft="100,27" />
         <ContainerLayout
           HeaderHeight="43"
@@ -140,7 +140,7 @@
           TopLeft="330.25,193">
           <EdgeLayout.Curve>
             <mssgle:Curve
-              StartConnector="{assembly:Null}"
+              StartConnector="{x:Null}"
               EndConnector="0,103"
               Start="0,0"
               End="0,95.5">
