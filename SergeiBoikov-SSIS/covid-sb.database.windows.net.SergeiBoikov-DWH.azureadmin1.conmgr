@@ -1,0 +1,14 @@
+﻿<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="covid-sb.database.windows.net.SergeiBoikov-DWH.azureadmin1"
+  DTS:DTSID="{B08E44EF-8691-4FB6-BC94-0C8B239589BD}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=covid-sb.database.windows.net;User ID=azureadmin;Initial Catalog=SergeiBoikov-DWH;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACudAaEqkrkiwHe2DeBalxgAAAAACAAAAAAAQZgAAAAEAACAAAAAK5plIclQLI6EypLpE8pveHr4tiNsGxn++VegcHe7zYQAAAAAOgAAAAAIAACAAAADaklQ+7b6CG/oawQwRld8N2+KpL9D4fsNf6iwDU+4i64AAAADwwMMiytw3pxW976dxscuFSInmNDPet8SJC5a0qr8RNz+bx8PyvpL38sMc3715fP6qOzo6PEvlDRembsW3ns5prG3PnfhRSPGy8VX+5VLUqIosSY5KeCnhXd7Sg/7b81mNRyxP1BqEp+gSvQnFP7kusQ8XuxoeIXZigyAZk/Kfl0AAAAB0ylCpfx2azgbbsjPhjLXSg+EgLdGTZJHjDDCXarLV99ktbVS3PRPUtUzcWrUYRH8Tc+XPVF6zfEKYDP2JrVcC</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

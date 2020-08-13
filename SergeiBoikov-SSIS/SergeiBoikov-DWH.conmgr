@@ -3,8 +3,14 @@
   DTS:ObjectName="localhost.SergeiBoikov-DWH"
   DTS:DTSID="{5B6F6622-B329-4583-9F70-333750645E3E}"
   DTS:CreationName="OLEDB">
+  <DTS:PropertyExpression
+    DTS:Name="ConnectionString">@[$Project::SergeiBoikov_DWH_ConnectionString]</DTS:PropertyExpression>
   <DTS:ObjectData>
     <DTS:ConnectionManager
-      DTS:ConnectionString="Data Source=localhost;Initial Catalog=SergeiBoikov-DWH;Provider=SQLNCLI11.1;Integrated Security=SSPI;Auto Translate=False;" />
+      DTS:ConnectionString="Data Source=covid-sb.database.windows.net;User ID=azureadmin;Initial Catalog=SergeiBoikov-DWH;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACudAaEqkrkiwHe2DeBalxgAAAAACAAAAAAAQZgAAAAEAACAAAADZpvHfQmAls825GJP7Ruge5WQs+v6IebwrGhb1wGt+ygAAAAAOgAAAAAIAACAAAAB8d/COiql8S9uFFwOyGwWsp+fLLvKEcFcSsPVetUzu6oAAAADVM6PPt59rBGtdEVVHmB+md6ULhUm7Trjr9C947ufgTKxkVhnPCyGsPmTGRRwgd/XRvd1zuPv9//d87quHqiYt8NmbBfNMc68tWWof3/jj9o9EBOT6MERGGr5zRuVGKMT7aujAf3a7tuEd9wIp6XePK0WqccXVFfn8AVeI5dUUWUAAAABUM25+AtIQCtd3rkEZvxEdHLccRLeM52cnDtUKGZU8vmkH3YwaxlIc4C+lWT/nJMCOgjOu6yjY6HT4HphCQ7kk</DTS:Password>
+    </DTS:ConnectionManager>
   </DTS:ObjectData>
 </DTS:ConnectionManager>
