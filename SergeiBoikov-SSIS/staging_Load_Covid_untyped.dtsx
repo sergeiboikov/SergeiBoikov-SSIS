@@ -1,0 +1,680 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="4/8/2019 11:34:56 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="EPRUSARW1252"
+  DTS:CreatorName="SARATOV\Sergei_Boikov"
+  DTS:DTSID="{26494912-3965-4678-87E6-B0EAC4022951}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.123"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Staging_Load_Countries"
+  DTS:PackageType="5"
+  DTS:VersionBuild="26"
+  DTS:VersionGUID="{AA060DE7-D074-4816-854E-009B25C5A22D}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[FFC CovidFile prepared]"
+      DTS:CreationName="FLATFILE"
+      DTS:Description="FFC CovidFile prepared"
+      DTS:DTSID="{29BAF6F4-60DB-400F-B96A-28287C122045}"
+      DTS:ObjectName="FFC CovidFile prepared">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:Format="Delimited"
+          DTS:LocaleID="1033"
+          DTS:HeaderRowDelimiter="_x000D__x000A_"
+          DTS:RowDelimiter=""
+          DTS:TextQualifier="_x003C_none_x003E_"
+          DTS:CodePage="1252"
+          DTS:ConnectionString="C:\GIT\Quantori\SergeiBoikov-SSIS\SergeiBoikov-SSIS\SourceFiles\CoordStatusMA_prepared.csv">
+          <DTS:FlatFileColumns>
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Column 0"
+              DTS:DTSID="{4622277A-8238-4FC0-B3E1-B48CBEA8EE74}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Column 1"
+              DTS:DTSID="{2EE679E0-29F9-4002-85DE-F80EC24E288A}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Column 2"
+              DTS:DTSID="{E9A291B5-C287-49FF-984A-7A5527561335}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x002C_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Column 3"
+              DTS:DTSID="{052078E8-B75C-40C3-AE20-62627B6E61A1}"
+              DTS:CreationName="" />
+            <DTS:FlatFileColumn
+              DTS:ColumnType="Delimited"
+              DTS:ColumnDelimiter="_x000D__x000A_"
+              DTS:MaximumWidth="50"
+              DTS:DataType="129"
+              DTS:TextQualified="True"
+              DTS:ObjectName="Column 4"
+              DTS:DTSID="{783A4AFB-8870-46C5-BB71-7D23BD291CB4}"
+              DTS:CreationName="" />
+          </DTS:FlatFileColumns>
+        </DTS:ConnectionManager>
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\SEQC Load data to staging"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{1A753E8A-79C1-48CC-AB1F-D395C2E27D6D}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQC Load data to staging">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{BFCB124F-2106-4975-8D58-D6E194CEEBB1}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DFT Load from File to staging Covid_untyped"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile"
+                  componentClassID="Microsoft.FlatFileSource"
+                  contactInfo="Flat File Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Flat File Source"
+                  localeId="1033"
+                  name="FFS CovidFile"
+                  usesDispositions="true"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Specifies whether zero-length columns are treated as null."
+                      name="RetainNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of an output column containing the file name. If no name is specified, no output column containing the file name will be generated."
+                      name="FileNameColumnName"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Connections[FlatFileConnection]"
+                      connectionManagerID="Package.ConnectionManagers[FFC CovidFile prepared]"
+                      connectionManagerRefId="Package.ConnectionManagers[FFC CovidFile prepared]"
+                      name="FlatFileConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Output]"
+                      name="Flat File Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Output].Columns[Status]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Output].ExternalColumns[Column 0]"
+                          length="255"
+                          lineageId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Output].Columns[Status]"
+                          name="Status"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Output].Columns[Date]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Output].ExternalColumns[Column 1]"
+                          length="255"
+                          lineageId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Output].Columns[Date]"
+                          name="Date"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Output].Columns[Latitude]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Output].ExternalColumns[Column 2]"
+                          length="255"
+                          lineageId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Output].Columns[Latitude]"
+                          name="Latitude"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Output].Columns[Longitude]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Output].ExternalColumns[Column 3]"
+                          length="255"
+                          lineageId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Output].Columns[Longitude]"
+                          name="Longitude"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Output].Columns[Count]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Output].ExternalColumns[Column 4]"
+                          length="255"
+                          lineageId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Output].Columns[Count]"
+                          name="Count"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the column uses the faster, locale-neutral parsing routines."
+                              name="FastParse">false</property>
+                            <property
+                              dataType="System.Boolean"
+                              description="Indicates whether the data is in binary format."
+                              name="UseBinaryFormat">false</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Output].ExternalColumns[Column 0]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Column 0" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Output].ExternalColumns[Column 1]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Column 1" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Output].ExternalColumns[Column 2]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Column 2" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Output].ExternalColumns[Column 3]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Column 3" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Output].ExternalColumns[Column 4]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="Column 4" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Error Output]"
+                      isErrorOut="true"
+                      name="Flat File Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          codePage="65001"
+                          dataType="text"
+                          description="Flat File Source Error Output Column"
+                          lineageId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Error Output].Columns[Flat File Source Error Output Column]"
+                          name="Flat File Source Error Output Column" />
+                        <outputColumn
+                          refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\OLEDB_Table_Covid_untyped"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLEDB_Table_Covid_untyped"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[staging].[Covid_untyped]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\OLEDB_Table_Covid_untyped.Connections[OleDbConnection]"
+                      connectionManagerID="{5B6F6622-B329-4583-9F70-333750645E3E}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[localhost.SergeiBoikov-DWH]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\OLEDB_Table_Covid_untyped.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\OLEDB_Table_Covid_untyped.Inputs[OLE DB Destination Input].Columns[Longitude]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Longitude"
+                          externalMetadataColumnId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\OLEDB_Table_Covid_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Longitude]"
+                          lineageId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Output].Columns[Longitude]" />
+                        <inputColumn
+                          refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\OLEDB_Table_Covid_untyped.Inputs[OLE DB Destination Input].Columns[Latitude]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Latitude"
+                          externalMetadataColumnId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\OLEDB_Table_Covid_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Latitude]"
+                          lineageId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Output].Columns[Latitude]" />
+                        <inputColumn
+                          refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\OLEDB_Table_Covid_untyped.Inputs[OLE DB Destination Input].Columns[Date]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Date"
+                          externalMetadataColumnId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\OLEDB_Table_Covid_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Date]"
+                          lineageId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Output].Columns[Date]" />
+                        <inputColumn
+                          refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\OLEDB_Table_Covid_untyped.Inputs[OLE DB Destination Input].Columns[Status]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Status"
+                          externalMetadataColumnId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\OLEDB_Table_Covid_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Status]"
+                          lineageId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Output].Columns[Status]" />
+                        <inputColumn
+                          refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\OLEDB_Table_Covid_untyped.Inputs[OLE DB Destination Input].Columns[Count]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Count"
+                          externalMetadataColumnId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\OLEDB_Table_Covid_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count]"
+                          lineageId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Output].Columns[Count]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\OLEDB_Table_Covid_untyped.Inputs[OLE DB Destination Input].ExternalColumns[sysCreatedAt]"
+                          dataType="dbTimeStamp"
+                          name="sysCreatedAt" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\OLEDB_Table_Covid_untyped.Inputs[OLE DB Destination Input].ExternalColumns[sysChangedAt]"
+                          dataType="dbTimeStamp"
+                          name="sysChangedAt" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\OLEDB_Table_Covid_untyped.Inputs[OLE DB Destination Input].ExternalColumns[sysCreatedBy]"
+                          dataType="i4"
+                          name="sysCreatedBy" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\OLEDB_Table_Covid_untyped.Inputs[OLE DB Destination Input].ExternalColumns[sysChangedBy]"
+                          dataType="i4"
+                          name="sysChangedBy" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\OLEDB_Table_Covid_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Status]"
+                          dataType="wstr"
+                          length="255"
+                          name="Status" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\OLEDB_Table_Covid_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Date]"
+                          dataType="wstr"
+                          length="255"
+                          name="Date" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\OLEDB_Table_Covid_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Latitude]"
+                          dataType="wstr"
+                          length="255"
+                          name="Latitude" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\OLEDB_Table_Covid_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Longitude]"
+                          dataType="wstr"
+                          length="255"
+                          name="Longitude" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\OLEDB_Table_Covid_untyped.Inputs[OLE DB Destination Input].ExternalColumns[Count]"
+                          dataType="wstr"
+                          length="255"
+                          name="Count" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\OLEDB_Table_Covid_untyped.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\OLEDB_Table_Covid_untyped.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\OLEDB_Table_Covid_untyped.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\OLEDB_Table_Covid_untyped.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\OLEDB_Table_Covid_untyped.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\OLEDB_Table_Covid_untyped.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped.Paths[Flat File Source Output]"
+                  endId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\OLEDB_Table_Covid_untyped.Inputs[OLE DB Destination Input]"
+                  name="Flat File Source Output"
+                  startId="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile.Outputs[Flat File Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SEQC Preparation"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{6ECED5EB-04F2-4B64-9D3B-1F5422A39BF8}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQC Preparation">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQC Preparation\SQL Truncate staging Covid_untyped"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{3FB2B2EE-6B9A-4D58-BDDC-C9D102489F13}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL Truncate staging Covid_untyped"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2017 RC1; © 2017 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"TRUNCATE TABLE staging.Covid_untyped"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{5B6F6622-B329-4583-9F70-333750645E3E}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE staging.Covid_untyped" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{B4EFF29C-1E85-4332-BE30-68B255B9F09E}"
+      DTS:From="Package\SEQC Preparation"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\SEQC Load data to staging" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="292,42"
+          Id="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped"
+          TopLeft="35.5,27" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="376,122"
+          Size="376,165"
+          Id="Package\SEQC Load data to staging"
+          TopLeft="259,292" />
+        <NodeLayout
+          Size="253,42"
+          Id="Package\SEQC Preparation\SQL Truncate staging Covid_untyped"
+          TopLeft="70,22" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="400,123"
+          Size="400,166"
+          Id="Package\SEQC Preparation"
+          TopLeft="253,64" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="450,230">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,62"
+              Start="0,0"
+              End="0,54.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,54.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="staging_Load_Covid_untyped"
+          ParentId="Package"
+          Size="262,46"
+          Id="2e3c463c-f9ed-4481-9c6d-93b1bfb68b03"
+          TopLeft="346,6">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="18"
+              Color="#FFFFFF00">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="Load data from the 'FileName_prepared.csv' into staging"
+          ParentId="Package"
+          FontInfo="{x:Null}"
+          Size="328,60"
+          Id="ffb84e8d-ce26-4af1-af9c-21e4c9d7f545"
+          TopLeft="17,4" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="219,42"
+          Id="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\OLEDB_Table_Covid_untyped"
+          TopLeft="280,179" />
+        <NodeLayout
+          Size="141,42"
+          Id="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\FFS CovidFile"
+          TopLeft="325,63" />
+        <EdgeLayout
+          Id="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped.Paths[Flat File Source Output]"
+          TopLeft="392.5,105">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,74"
+              Start="0,0"
+              End="0,66.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,66.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Load data to staging\DFT Load from File to staging Covid_untyped\OLEDB_Table_Covid_untyped">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

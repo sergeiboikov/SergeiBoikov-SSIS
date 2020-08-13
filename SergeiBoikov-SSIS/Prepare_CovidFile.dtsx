@@ -11,8 +11,8 @@
   DTS:LocaleID="1033"
   DTS:ObjectName="Package1"
   DTS:PackageType="5"
-  DTS:VersionBuild="35"
-  DTS:VersionGUID="{122E99A5-3F73-4D7C-A0EC-4C489B998328}">
+  DTS:VersionBuild="49"
+  DTS:VersionGUID="{215CC6B4-04F3-46FA-B0D5-353817EA75D7}">
   <DTS:Property
     DTS:Name="PackageFormatVersion">8</DTS:Property>
   <DTS:ConnectionManagers>
@@ -26,7 +26,7 @@
           ConnectionString="AccountName=covidsbstac;DefaultEndpointsProtocol=https;EndpointSuffix=core.windows.net;">
           <AccountKey
             Sensitive="1"
-            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACudAaEqkrkiwHe2DeBalxgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAQRLfYf/YvXvmiuTcdvWoSRTPenKrC/AJN3kGGh7vNLAAAAAAOgAAAAAIAACAAAAB9eAd2QLbiJKH8NxyrtaP7JO0IFMWvndxZuSbcomMzBcAAAAAqdObaZUf9/k+kUpHwvgU+Mim/U9ugQ9OuDOu1wczcmLdYNH2C7PB9WZbjxTCSP/Gq7VOt/s7oYqshRl/zmqJvJMZPXj84eketl7bkeUEJ+RASpHJ2+eRVX/+CBJiChguHOJPA9NX/EkveFG+yH09eEpUoZ/l3iAlYmvHP7y9EgNjtE/YxV2pVhjrTpZtFrvcFPw6V5XZDgjvy8ZDO1/XvzNHmKD82PzCAQC2bkYp5pDB+SM3Yjmy8oML2FEzRvYtAAAAAWgiiMbvdqKNq+7DjshKT9i4BFe1Hxdn42XOk+wHrFuULGBdewwmKRapRx4yggBNTnd8jrumTj+NfTsvo9FJ6GQ</AccountKey>
+            Encrypted="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAACudAaEqkrkiwHe2DeBalxgAAAAAIAAAARABUAFMAAAAQZgAAAAEAACAAAAAFNodthvS6TXcG//yd/JDnwGMDhJ1Dt2qgYjk1ihiEOQAAAAAOgAAAAAIAACAAAAD1fmpvQ+wJ9Gkkpmdgc7evNRw/EGf9IAALfAecfyDmZ8AAAABhduNE0KOK0VyiXADpP9F3hyGyaoB2HX1g2ef60ts2P0CzGoW64Gs3kLOY0h/EmaErmGg3rgXXTj80aAgPrtiVKJoMsKzRs6E4YO7jkjNr/G5JTi5snpbKoQpMSzHKCOW0BZhts82ESheJZWbh9gDPjglMBz0shnvV9gHFlIo8rqvWcJTFXMX8UcGKleecn4A6imXzkVGG6NSZCUiKC0LEu8YnKB4wPGYe0xJzbC7iYmOuMGt4rmqdNFlpJ/k8VXpAAAAAsdZIdmZZYR3/eCfLYepST8aJ6t6Z0lEIFMwtDSJ8bi+oeXtJzdF1VNp6GsviozQNvTRt6kr/oN63sNYy4vNPlg</AccountKey>
         </AzureStorageConnectionManager>
       </DTS:ObjectData>
     </DTS:ConnectionManager>
@@ -77,6 +77,24 @@
   </DTS:Variables>
   <DTS:Executables>
     <DTS:Executable
+      DTS:refId="Package\Clear SourceFolder Task"
+      DTS:CreationName="Microsoft.FileSystemTask"
+      DTS:Description="File System Task"
+      DTS:DTSID="{5E2ACEA2-89DA-41D4-925D-C981764A4BCA}"
+      DTS:ExecutableType="Microsoft.FileSystemTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Clear SourceFolder Task"
+      DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <FileSystemData
+          TaskOperationType="DeleteDirectoryContent"
+          TaskSourcePath="User::SourceFileFolder"
+          TaskIsSourceVariable="True" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
       DTS:refId="Package\CovidFile Download Task"
       DTS:CreationName="CopyFromBlobTask"
       DTS:Description="Download CovidFile from Azure Blob Storage"
@@ -106,7 +124,6 @@
       DTS:refId="Package\CovidFile Transform Task"
       DTS:CreationName="Microsoft.ExecuteProcess"
       DTS:Description="Transform CovidCsv Task"
-      DTS:Disabled="True"
       DTS:DTSID="{86B23348-65E2-4EFC-94DE-565CB5520EB5}"
       DTS:ExecutableType="Microsoft.ExecuteProcess"
       DTS:LocaleID="-1"
@@ -128,24 +145,6 @@
           StandardInputVariable="User::SourceFileFolder" />
       </DTS:ObjectData>
     </DTS:Executable>
-    <DTS:Executable
-      DTS:refId="Package\File System Task"
-      DTS:CreationName="Microsoft.FileSystemTask"
-      DTS:Description="File System Task"
-      DTS:DTSID="{5E2ACEA2-89DA-41D4-925D-C981764A4BCA}"
-      DTS:ExecutableType="Microsoft.FileSystemTask"
-      DTS:LocaleID="-1"
-      DTS:ObjectName="File System Task"
-      DTS:TaskContact="File System Task;Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
-      DTS:ThreadHint="0">
-      <DTS:Variables />
-      <DTS:ObjectData>
-        <FileSystemData
-          TaskOperationType="DeleteDirectoryContent"
-          TaskSourcePath="User::SourceFileFolder"
-          TaskIsSourceVariable="True" />
-      </DTS:ObjectData>
-    </DTS:Executable>
   </DTS:Executables>
   <DTS:PrecedenceConstraints>
     <DTS:PrecedenceConstraint
@@ -160,7 +159,7 @@
       DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
       DTS:CreationName=""
       DTS:DTSID="{9014482A-A275-4831-91A9-B5CDB1B33AD9}"
-      DTS:From="Package\File System Task"
+      DTS:From="Package\Clear SourceFolder Task"
       DTS:LogicalAnd="True"
       DTS:ObjectName="Constraint 1"
       DTS:To="Package\CovidFile Download Task" />
@@ -178,16 +177,20 @@
       <GraphLayout
         Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
         <NodeLayout
-          Size="204,42"
+          Size="193,42"
+          Id="Package\Clear SourceFolder Task"
+          TopLeft="408,77" />
+        <NodeLayout
+          Size="196,42"
           Id="Package\CovidFile Download Task"
-          TopLeft="237.5,171.5" />
+          TopLeft="401.5,176.5" />
         <NodeLayout
           Size="198,42"
           Id="Package\CovidFile Transform Task"
-          TopLeft="240.5,275.5" />
+          TopLeft="404.5,280.5" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint]"
-          TopLeft="339.5,213.5">
+          TopLeft="501.5,218.5">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{x:Null}"
@@ -207,30 +210,9 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
-        <AnnotationLayout
-          Text="Prepare_CovidFile"
-          ParentId="Package"
-          Size="171,46"
-          Id="5ff44007-af93-4056-b0fc-55599ac9b53e"
-          TopLeft="257,13.5">
-          <AnnotationLayout.FontInfo>
-            <mssge:FontInfo
-              Family="Tahoma"
-              Size="18"
-              Color="#FFFFFF00">
-              <mssge:FontInfo.TextDecorations>
-                <av:TextDecorationCollection />
-              </mssge:FontInfo.TextDecorations>
-            </mssge:FontInfo>
-          </AnnotationLayout.FontInfo>
-        </AnnotationLayout>
-        <NodeLayout
-          Size="158,42"
-          Id="Package\File System Task"
-          TopLeft="257,72" />
         <EdgeLayout
           Id="Package.PrecedenceConstraints[Constraint 1]"
-          TopLeft="337.75,114">
+          TopLeft="502,119">
           <EdgeLayout.Curve>
             <mssgle:Curve
               StartConnector="{x:Null}"
@@ -250,6 +232,30 @@
             <EdgeLabelCollection />
           </EdgeLayout.Labels>
         </EdgeLayout>
+        <AnnotationLayout
+          Text="Prepare_CovidFile"
+          ParentId="Package"
+          Size="171,46"
+          Id="5ff44007-af93-4056-b0fc-55599ac9b53e"
+          TopLeft="421,18.5">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="18"
+              Color="#FFFFFF00">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="1. Download the source file from Azure BLOB storage.&#xD;&#xA;2. Transform file for useful format and save as 'FileName_prepared.csv'"
+          ParentId="Package"
+          FontInfo="{x:Null}"
+          Size="400,56"
+          Id="5ba3ac7a-a1b7-47d9-ab79-68d7d0a27d1e"
+          TopLeft="12,14" />
       </GraphLayout>
     </LayoutInfo>
   </Package>

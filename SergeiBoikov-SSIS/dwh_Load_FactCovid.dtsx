@@ -1,0 +1,1891 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/10/2020 4:22:15 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="SERGEYPC"
+  DTS:CreatorName="SergeyPC\Сергей"
+  DTS:DTSID="{60FE7451-1123-4015-9AEC-E2FA8875B971}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="15.0.2000.123"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="14"
+  DTS:VersionGUID="{ADED556D-5060-4930-A283-3CF1631C3661}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\SEQC Load FactCovid"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{80DFE0D8-C51E-4A7E-BE0A-3E033A4622E6}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQC Load FactCovid">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{463A4D97-CEC5-4D6F-A9A5-EB2645C6B2B3}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DFT Load Data to dwh_FactCovid"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Deal with Unknown values"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Deal with Unknown values"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Deal with Unknown values.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Deal with Unknown values.Inputs[Derived Column Input].Columns[DimStatusKey]"
+                          cachedDataType="i4"
+                          cachedName="DimStatusKey"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimStatus.Outputs[Lookup Match Output].Columns[DimStatusKey]"
+                          truncationRowDisposition="FailComponent"
+                          usageType="readWrite">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">[ISNULL](#{Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimStatus.Outputs[Lookup Match Output].Columns[DimStatusKey]}) ? -1 : #{Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimStatus.Outputs[Lookup Match Output].Columns[DimStatusKey]}</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">ISNULL(DimStatusKey) ? -1 : DimStatusKey</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Deal with Unknown values.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Deal with Unknown values.Inputs[Derived Column Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Deal with Unknown values.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Deal with Unknown values.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Deal with Unknown values.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Deal with Unknown values.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Deal with Unknown values.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Deal with Unknown values.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimDate"
+                  componentClassID="Microsoft.Lookup"
+                  contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+                  description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+                  name="Lookup DimDate"
+                  usesDispositions="true"
+                  version="6">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement that generates the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DimDateKey 
+     , DimDateKey AS [DateKeyLookup]
+FROM dwh.DimDate</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommandParam"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT DimDateKey 
+     , DimDateKey AS [DateKeyLookup]
+FROM dwh.DimDate) [refTable]
+where [refTable].[DateKeyLookup] = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the type of connection used to access the reference dataset."
+                      name="ConnectionType"
+                      typeConverter="LookupConnectionType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the cache type of the lookup table."
+                      name="CacheType"
+                      typeConverter="CacheType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                      name="NoMatchBehavior"
+                      typeConverter="LookupNoMatchBehavior">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                      name="NoMatchCachePercentage">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                      name="MaxMemoryUsage">25</property>
+                    <property
+                      dataType="System.Int64"
+                      description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                      name="MaxMemoryUsage64">25</property>
+                    <property
+                      dataType="System.String"
+                      description="Indicates whether to reference metadata in an XML format."
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DimDateKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="DateKeyLookup" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                      name="ParameterMap">#{Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].Columns[Date]};</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                      name="TreatDuplicateKeysAsError">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimDate.Connections[OleDbConnection]"
+                      connectionManagerID="{5B6F6622-B329-4583-9F70-333750645E3E}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[localhost.SergeiBoikov-DWH]"
+                      description="Connection manager used to access lookup data."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimDate.Inputs[Lookup Input]"
+                      name="Lookup Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimDate.Inputs[Lookup Input].Columns[Date]"
+                          cachedDataType="i4"
+                          cachedName="Date"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].Columns[Date]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table that a column joins."
+                              name="JoinToReferenceColumn">DateKeyLookup</property>
+                            <property
+                              dataType="System.Null"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimDate.Outputs[Lookup Match Output]"
+                      errorOrTruncationOperation="Lookup"
+                      errorRowDisposition="FailComponent"
+                      exclusionGroup="1"
+                      name="Lookup Match Output"
+                      synchronousInputId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimDate.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimDate.Outputs[Lookup Match Output].Columns[DimDateKey]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Copy Column"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimDate.Outputs[Lookup Match Output].Columns[DimDateKey]"
+                          name="DimDateKey"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">DimDateKey</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimDate.Outputs[Lookup No Match Output]"
+                      description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                      exclusionGroup="1"
+                      name="Lookup No Match Output"
+                      synchronousInputId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimDate.Inputs[Lookup Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimDate.Outputs[Lookup Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Lookup Error Output"
+                      synchronousInputId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimDate.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimDate.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimDate.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimDate.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimDate.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimLocationKey"
+                  componentClassID="Microsoft.Lookup"
+                  contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+                  description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+                  name="Lookup DimLocationKey"
+                  usesDispositions="true"
+                  version="6">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement that generates the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT dl.DimLocationKey, dl.Latitude, dl.Longitude 
+FROM dwh.DimLocation dl</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommandParam"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT dl.DimLocationKey, dl.Latitude, dl.Longitude 
+FROM dwh.DimLocation dl) [refTable]
+where [refTable].[Latitude] = ? and [refTable].[Longitude] = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the type of connection used to access the reference dataset."
+                      name="ConnectionType"
+                      typeConverter="LookupConnectionType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the cache type of the lookup table."
+                      name="CacheType"
+                      typeConverter="CacheType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                      name="NoMatchBehavior"
+                      typeConverter="LookupNoMatchBehavior">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                      name="NoMatchCachePercentage">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                      name="MaxMemoryUsage">25</property>
+                    <property
+                      dataType="System.Int64"
+                      description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                      name="MaxMemoryUsage64">25</property>
+                    <property
+                      dataType="System.String"
+                      description="Indicates whether to reference metadata in an XML format."
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DimLocationKey" dataType="DT_I8" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="Latitude" dataType="DT_NUMERIC" length="0" precision="5" scale="3" codePage="0"/&gt;&lt;referenceColumn name="Longitude" dataType="DT_NUMERIC" length="0" precision="5" scale="3" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                      name="ParameterMap">#{Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].Columns[Latitude]};#{Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].Columns[Longitude]};</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                      name="TreatDuplicateKeysAsError">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimLocationKey.Connections[OleDbConnection]"
+                      connectionManagerID="{5B6F6622-B329-4583-9F70-333750645E3E}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[localhost.SergeiBoikov-DWH]"
+                      description="Connection manager used to access lookup data."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimLocationKey.Inputs[Lookup Input]"
+                      name="Lookup Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimLocationKey.Inputs[Lookup Input].Columns[Latitude]"
+                          cachedDataType="numeric"
+                          cachedName="Latitude"
+                          cachedPrecision="5"
+                          cachedScale="3"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].Columns[Latitude]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table that a column joins."
+                              name="JoinToReferenceColumn">Latitude</property>
+                            <property
+                              dataType="System.Null"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimLocationKey.Inputs[Lookup Input].Columns[Longitude]"
+                          cachedDataType="numeric"
+                          cachedName="Longitude"
+                          cachedPrecision="5"
+                          cachedScale="3"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].Columns[Longitude]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table that a column joins."
+                              name="JoinToReferenceColumn">Longitude</property>
+                            <property
+                              dataType="System.Null"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimLocationKey.Outputs[Lookup Match Output]"
+                      errorOrTruncationOperation="Lookup"
+                      errorRowDisposition="FailComponent"
+                      exclusionGroup="1"
+                      name="Lookup Match Output"
+                      synchronousInputId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimLocationKey.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimLocationKey.Outputs[Lookup Match Output].Columns[DimLocationKey]"
+                          dataType="i8"
+                          errorOrTruncationOperation="Copy Column"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimLocationKey.Outputs[Lookup Match Output].Columns[DimLocationKey]"
+                          name="DimLocationKey"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">DimLocationKey</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimLocationKey.Outputs[Lookup No Match Output]"
+                      description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                      exclusionGroup="1"
+                      name="Lookup No Match Output"
+                      synchronousInputId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimLocationKey.Inputs[Lookup Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimLocationKey.Outputs[Lookup Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Lookup Error Output"
+                      synchronousInputId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimLocationKey.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimLocationKey.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimLocationKey.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimLocationKey.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimLocationKey.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimStatus"
+                  componentClassID="Microsoft.Lookup"
+                  contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+                  description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+                  name="Lookup DimStatus"
+                  usesDispositions="true"
+                  version="6">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the SQL statement that generates the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT DimStatusKey, StatusCode FROM dwh.DimStatus</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                      expressionType="Notify"
+                      name="SqlCommandParam"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (SELECT DimStatusKey, StatusCode FROM dwh.DimStatus) [refTable]
+where [refTable].[StatusCode] = ?</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the type of connection used to access the reference dataset."
+                      name="ConnectionType"
+                      typeConverter="LookupConnectionType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the cache type of the lookup table."
+                      name="CacheType"
+                      typeConverter="CacheType">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                      name="NoMatchBehavior"
+                      typeConverter="LookupNoMatchBehavior">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                      name="NoMatchCachePercentage">0</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                      name="MaxMemoryUsage">25</property>
+                    <property
+                      dataType="System.Int64"
+                      description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                      name="MaxMemoryUsage64">25</property>
+                    <property
+                      dataType="System.String"
+                      description="Indicates whether to reference metadata in an XML format."
+                      name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="DimStatusKey" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="StatusCode" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                    <property
+                      containsID="true"
+                      dataType="System.String"
+                      description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                      name="ParameterMap">#{Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].Columns[Status]};</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                      name="TreatDuplicateKeysAsError">false</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimStatus.Connections[OleDbConnection]"
+                      connectionManagerID="{5B6F6622-B329-4583-9F70-333750645E3E}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[localhost.SergeiBoikov-DWH]"
+                      description="Connection manager used to access lookup data."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimStatus.Inputs[Lookup Input]"
+                      name="Lookup Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimStatus.Inputs[Lookup Input].Columns[Status]"
+                          cachedDataType="i4"
+                          cachedName="Status"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].Columns[Status]">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table that a column joins."
+                              name="JoinToReferenceColumn">StatusCode</property>
+                            <property
+                              dataType="System.Null"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn" />
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimStatus.Outputs[Lookup Match Output]"
+                      errorOrTruncationOperation="Lookup"
+                      errorRowDisposition="FailComponent"
+                      exclusionGroup="1"
+                      name="Lookup Match Output"
+                      synchronousInputId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimStatus.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimStatus.Outputs[Lookup Match Output].Columns[DimStatusKey]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Copy Column"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimStatus.Outputs[Lookup Match Output].Columns[DimStatusKey]"
+                          name="DimStatusKey"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              dataType="System.String"
+                              description="Specifies the column in the reference table from which a column is copied."
+                              name="CopyFromReferenceColumn">DimStatusKey</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimStatus.Outputs[Lookup No Match Output]"
+                      description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                      exclusionGroup="1"
+                      name="Lookup No Match Output"
+                      synchronousInputId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimStatus.Inputs[Lookup Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimStatus.Outputs[Lookup Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Lookup Error Output"
+                      synchronousInputId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimStatus.Inputs[Lookup Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimStatus.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimStatus.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimStatus.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimStatus.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLEDST dwh_FactCovid"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLEDST dwh_FactCovid"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dwh].[FactCovid]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLEDST dwh_FactCovid.Connections[OleDbConnection]"
+                      connectionManagerID="{5B6F6622-B329-4583-9F70-333750645E3E}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[localhost.SergeiBoikov-DWH]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLEDST dwh_FactCovid.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLEDST dwh_FactCovid.Inputs[OLE DB Destination Input].Columns[DimLocationKey]"
+                          cachedDataType="i8"
+                          cachedName="DimLocationKey"
+                          externalMetadataColumnId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLEDST dwh_FactCovid.Inputs[OLE DB Destination Input].ExternalColumns[DimLocationKey]"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimLocationKey.Outputs[Lookup Match Output].Columns[DimLocationKey]" />
+                        <inputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLEDST dwh_FactCovid.Inputs[OLE DB Destination Input].Columns[DimDateKey]"
+                          cachedDataType="i4"
+                          cachedName="DimDateKey"
+                          externalMetadataColumnId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLEDST dwh_FactCovid.Inputs[OLE DB Destination Input].ExternalColumns[DimDateKey]"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimDate.Outputs[Lookup Match Output].Columns[DimDateKey]" />
+                        <inputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLEDST dwh_FactCovid.Inputs[OLE DB Destination Input].Columns[DimStatusKey]"
+                          cachedDataType="i4"
+                          cachedName="DimStatusKey"
+                          externalMetadataColumnId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLEDST dwh_FactCovid.Inputs[OLE DB Destination Input].ExternalColumns[DimStatusKey]"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimStatus.Outputs[Lookup Match Output].Columns[DimStatusKey]" />
+                        <inputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLEDST dwh_FactCovid.Inputs[OLE DB Destination Input].Columns[Count]"
+                          cachedDataType="i4"
+                          cachedName="Count"
+                          externalMetadataColumnId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLEDST dwh_FactCovid.Inputs[OLE DB Destination Input].ExternalColumns[CovidCount]"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].Columns[Count]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLEDST dwh_FactCovid.Inputs[OLE DB Destination Input].ExternalColumns[FactCovidKey]"
+                          dataType="i4"
+                          name="FactCovidKey" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLEDST dwh_FactCovid.Inputs[OLE DB Destination Input].ExternalColumns[DimDateKey]"
+                          dataType="i4"
+                          name="DimDateKey" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLEDST dwh_FactCovid.Inputs[OLE DB Destination Input].ExternalColumns[DimStatusKey]"
+                          dataType="i4"
+                          name="DimStatusKey" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLEDST dwh_FactCovid.Inputs[OLE DB Destination Input].ExternalColumns[DimLocationKey]"
+                          dataType="i8"
+                          name="DimLocationKey" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLEDST dwh_FactCovid.Inputs[OLE DB Destination Input].ExternalColumns[CovidCount]"
+                          dataType="i4"
+                          name="CovidCount" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLEDST dwh_FactCovid.Inputs[OLE DB Destination Input].ExternalColumns[sysCreatedAt]"
+                          dataType="dbTimeStamp"
+                          name="sysCreatedAt" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLEDST dwh_FactCovid.Inputs[OLE DB Destination Input].ExternalColumns[sysChangedAt]"
+                          dataType="dbTimeStamp"
+                          name="sysChangedAt" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLEDST dwh_FactCovid.Inputs[OLE DB Destination Input].ExternalColumns[sysCreatedBy]"
+                          dataType="i4"
+                          name="sysCreatedBy" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLEDST dwh_FactCovid.Inputs[OLE DB Destination Input].ExternalColumns[sysChangedBy]"
+                          dataType="i4"
+                          name="sysChangedBy" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLEDST dwh_FactCovid.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLEDST dwh_FactCovid.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLEDST dwh_FactCovid.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLEDST dwh_FactCovid.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLEDST dwh_FactCovid.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLEDST dwh_FactCovid.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLESRC staging_Covid_typed"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+	 [Status]
+	,CAST(FORMAT([Date],'yyyyMMdd') AS INT) AS [Date]
+	,Latitude
+	,Longitude
+	,[Count]
+FROM staging.Covid_typed</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Connections[OleDbConnection]"
+                      connectionManagerID="{5B6F6622-B329-4583-9F70-333750645E3E}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[localhost.SergeiBoikov-DWH]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].Columns[Status]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].ExternalColumns[Status]"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].Columns[Status]"
+                          name="Status"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].Columns[Date]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].ExternalColumns[Date]"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].Columns[Date]"
+                          name="Date"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].Columns[Latitude]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].ExternalColumns[Latitude]"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].Columns[Latitude]"
+                          name="Latitude"
+                          precision="5"
+                          scale="3"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].Columns[Longitude]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].ExternalColumns[Longitude]"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].Columns[Longitude]"
+                          name="Longitude"
+                          precision="5"
+                          scale="3"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].Columns[Count]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].ExternalColumns[Count]"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].Columns[Count]"
+                          name="Count"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].ExternalColumns[Status]"
+                          dataType="i4"
+                          name="Status" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].ExternalColumns[Date]"
+                          dataType="i4"
+                          name="Date" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].ExternalColumns[Latitude]"
+                          dataType="numeric"
+                          name="Latitude"
+                          precision="5"
+                          scale="3" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].ExternalColumns[Longitude]"
+                          dataType="numeric"
+                          name="Longitude"
+                          precision="5"
+                          scale="3" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].ExternalColumns[Count]"
+                          dataType="i4"
+                          name="Count" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Error Output].Columns[Status]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Error Output].Columns[Status]"
+                          name="Status" />
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Error Output].Columns[Date]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Error Output].Columns[Date]"
+                          name="Date" />
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Error Output].Columns[Latitude]"
+                          dataType="numeric"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Error Output].Columns[Latitude]"
+                          name="Latitude"
+                          precision="5"
+                          scale="3" />
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Error Output].Columns[Longitude]"
+                          dataType="numeric"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Error Output].Columns[Longitude]"
+                          name="Longitude"
+                          precision="5"
+                          scale="3" />
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Error Output].Columns[Count]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Error Output].Columns[Count]"
+                          name="Count" />
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All"
+                  componentClassID="Microsoft.UnionAll"
+                  contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+                  name="Union All"
+                  version="1">
+                  <inputs>
+                    <input
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All.Inputs[Union All Input 2]"
+                      hasSideEffects="true"
+                      name="Union All Input 2">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All.Inputs[Union All Input 2].Columns[Date]"
+                          cachedDataType="i4"
+                          cachedName="Date"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].Columns[Date]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All.Outputs[Union All Output 1].Columns[Date]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All.Inputs[Union All Input 2].Columns[Latitude]"
+                          cachedDataType="numeric"
+                          cachedName="Latitude"
+                          cachedPrecision="5"
+                          cachedScale="3"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].Columns[Latitude]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All.Outputs[Union All Output 1].Columns[Latitude]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All.Inputs[Union All Input 2].Columns[Longitude]"
+                          cachedDataType="numeric"
+                          cachedName="Longitude"
+                          cachedPrecision="5"
+                          cachedScale="3"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].Columns[Longitude]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All.Outputs[Union All Output 1].Columns[Longitude]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All.Inputs[Union All Input 2].Columns[Count]"
+                          cachedDataType="i4"
+                          cachedName="Count"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].Columns[Count]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All.Outputs[Union All Output 1].Columns[Count]}</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                    <input
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All.Inputs[Union All Input 1]"
+                      dangling="true"
+                      hasSideEffects="true"
+                      name="Union All Input 1">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All.Outputs[Union All Output 1]"
+                      name="Union All Output 1">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All.Outputs[Union All Output 1].Columns[Status]"
+                          dataType="ui1"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All.Outputs[Union All Output 1].Columns[Status]"
+                          name="Status" />
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All.Outputs[Union All Output 1].Columns[Date]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All.Outputs[Union All Output 1].Columns[Date]"
+                          name="Date" />
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All.Outputs[Union All Output 1].Columns[Latitude]"
+                          dataType="numeric"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All.Outputs[Union All Output 1].Columns[Latitude]"
+                          name="Latitude"
+                          precision="5"
+                          scale="3" />
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All.Outputs[Union All Output 1].Columns[Longitude]"
+                          dataType="numeric"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All.Outputs[Union All Output 1].Columns[Longitude]"
+                          name="Longitude"
+                          precision="5"
+                          scale="3" />
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All.Outputs[Union All Output 1].Columns[Count]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All.Outputs[Union All Output 1].Columns[Count]"
+                          name="Count" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 1"
+                  componentClassID="Microsoft.UnionAll"
+                  contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+                  name="Union All 1"
+                  version="1">
+                  <inputs>
+                    <input
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 1.Inputs[Union All Input 2]"
+                      hasSideEffects="true"
+                      name="Union All Input 2">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 1.Inputs[Union All Input 2].Columns[Date]"
+                          cachedDataType="i4"
+                          cachedName="Date"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].Columns[Date]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 1.Outputs[Union All Output 1].Columns[Date]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 1.Inputs[Union All Input 2].Columns[Latitude]"
+                          cachedDataType="numeric"
+                          cachedName="Latitude"
+                          cachedPrecision="5"
+                          cachedScale="3"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].Columns[Latitude]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 1.Outputs[Union All Output 1].Columns[Latitude]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 1.Inputs[Union All Input 2].Columns[Longitude]"
+                          cachedDataType="numeric"
+                          cachedName="Longitude"
+                          cachedPrecision="5"
+                          cachedScale="3"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].Columns[Longitude]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 1.Outputs[Union All Output 1].Columns[Longitude]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 1.Inputs[Union All Input 2].Columns[Count]"
+                          cachedDataType="i4"
+                          cachedName="Count"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].Columns[Count]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 1.Outputs[Union All Output 1].Columns[Count]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 1.Inputs[Union All Input 2].Columns[DimLocationKey]"
+                          cachedDataType="i8"
+                          cachedName="DimLocationKey"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimLocationKey.Outputs[Lookup Match Output].Columns[DimLocationKey]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 1.Outputs[Union All Output 1].Columns[DimLocationKey]}</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                    <input
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 1.Inputs[Union All Input 1]"
+                      dangling="true"
+                      hasSideEffects="true"
+                      name="Union All Input 1">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 1.Outputs[Union All Output 1]"
+                      name="Union All Output 1">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 1.Outputs[Union All Output 1].Columns[Status]"
+                          dataType="ui1"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 1.Outputs[Union All Output 1].Columns[Status]"
+                          name="Status" />
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 1.Outputs[Union All Output 1].Columns[Date]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 1.Outputs[Union All Output 1].Columns[Date]"
+                          name="Date" />
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 1.Outputs[Union All Output 1].Columns[Latitude]"
+                          dataType="numeric"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 1.Outputs[Union All Output 1].Columns[Latitude]"
+                          name="Latitude"
+                          precision="5"
+                          scale="3" />
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 1.Outputs[Union All Output 1].Columns[Longitude]"
+                          dataType="numeric"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 1.Outputs[Union All Output 1].Columns[Longitude]"
+                          name="Longitude"
+                          precision="5"
+                          scale="3" />
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 1.Outputs[Union All Output 1].Columns[Count]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 1.Outputs[Union All Output 1].Columns[Count]"
+                          name="Count" />
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 1.Outputs[Union All Output 1].Columns[DimLocationKey]"
+                          dataType="i8"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 1.Outputs[Union All Output 1].Columns[DimLocationKey]"
+                          name="DimLocationKey" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2"
+                  componentClassID="Microsoft.UnionAll"
+                  contactInfo="Union All;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Combines rows from multiple data flows without sorting. For example, add rows back to a data flow after correction of errors. If sorting is important, we recommend using the Merge transformation."
+                  name="Union All 2"
+                  version="1">
+                  <inputs>
+                    <input
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2.Inputs[Union All Input 2]"
+                      hasSideEffects="true"
+                      name="Union All Input 2">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2.Inputs[Union All Input 2].Columns[Date]"
+                          cachedDataType="i4"
+                          cachedName="Date"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].Columns[Date]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2.Outputs[Union All Output 1].Columns[Date]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2.Inputs[Union All Input 2].Columns[Latitude]"
+                          cachedDataType="numeric"
+                          cachedName="Latitude"
+                          cachedPrecision="5"
+                          cachedScale="3"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].Columns[Latitude]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2.Outputs[Union All Output 1].Columns[Latitude]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2.Inputs[Union All Input 2].Columns[Longitude]"
+                          cachedDataType="numeric"
+                          cachedName="Longitude"
+                          cachedPrecision="5"
+                          cachedScale="3"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].Columns[Longitude]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2.Outputs[Union All Output 1].Columns[Longitude]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2.Inputs[Union All Input 2].Columns[Count]"
+                          cachedDataType="i4"
+                          cachedName="Count"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output].Columns[Count]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2.Outputs[Union All Output 1].Columns[Count]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2.Inputs[Union All Input 2].Columns[DimLocationKey]"
+                          cachedDataType="i8"
+                          cachedName="DimLocationKey"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimLocationKey.Outputs[Lookup Match Output].Columns[DimLocationKey]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2.Outputs[Union All Output 1].Columns[DimLocationKey]}</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2.Inputs[Union All Input 2].Columns[DimDateKey]"
+                          cachedDataType="i4"
+                          cachedName="DimDateKey"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimDate.Outputs[Lookup Match Output].Columns[DimDateKey]">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Output column lineage ID"
+                              name="OutputColumnLineageID">#{Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2.Outputs[Union All Output 1].Columns[DimDateKey]}</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                    <input
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2.Inputs[Union All Input 1]"
+                      dangling="true"
+                      hasSideEffects="true"
+                      name="Union All Input 1">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2.Outputs[Union All Output 1]"
+                      name="Union All Output 1">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2.Outputs[Union All Output 1].Columns[Status]"
+                          dataType="ui1"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2.Outputs[Union All Output 1].Columns[Status]"
+                          name="Status" />
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2.Outputs[Union All Output 1].Columns[Date]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2.Outputs[Union All Output 1].Columns[Date]"
+                          name="Date" />
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2.Outputs[Union All Output 1].Columns[Latitude]"
+                          dataType="numeric"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2.Outputs[Union All Output 1].Columns[Latitude]"
+                          name="Latitude"
+                          precision="5"
+                          scale="3" />
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2.Outputs[Union All Output 1].Columns[Longitude]"
+                          dataType="numeric"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2.Outputs[Union All Output 1].Columns[Longitude]"
+                          name="Longitude"
+                          precision="5"
+                          scale="3" />
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2.Outputs[Union All Output 1].Columns[Count]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2.Outputs[Union All Output 1].Columns[Count]"
+                          name="Count" />
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2.Outputs[Union All Output 1].Columns[DimLocationKey]"
+                          dataType="i8"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2.Outputs[Union All Output 1].Columns[DimLocationKey]"
+                          name="DimLocationKey" />
+                        <outputColumn
+                          refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2.Outputs[Union All Output 1].Columns[DimDateKey]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2.Outputs[Union All Output 1].Columns[DimDateKey]"
+                          name="DimDateKey" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid.Paths[Derived Column Output]"
+                  endId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLEDST dwh_FactCovid.Inputs[OLE DB Destination Input]"
+                  name="Derived Column Output"
+                  startId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Deal with Unknown values.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid.Paths[Lookup Match Output]"
+                  endId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimDate.Inputs[Lookup Input]"
+                  name="Lookup Match Output"
+                  startId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimLocationKey.Outputs[Lookup Match Output]" />
+                <path
+                  refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid.Paths[Lookup Match Output1]"
+                  endId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimStatus.Inputs[Lookup Input]"
+                  name="Lookup Match Output"
+                  startId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimDate.Outputs[Lookup Match Output]" />
+                <path
+                  refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid.Paths[Lookup Match Output2]"
+                  endId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Deal with Unknown values.Inputs[Derived Column Input]"
+                  name="Lookup Match Output"
+                  startId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimStatus.Outputs[Lookup Match Output]" />
+                <path
+                  refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid.Paths[Lookup No Match Output]"
+                  endId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All.Inputs[Union All Input 2]"
+                  name="Lookup No Match Output"
+                  startId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimLocationKey.Outputs[Lookup No Match Output]" />
+                <path
+                  refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid.Paths[Lookup No Match Output1]"
+                  endId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 1.Inputs[Union All Input 2]"
+                  name="Lookup No Match Output"
+                  startId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimDate.Outputs[Lookup No Match Output]" />
+                <path
+                  refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid.Paths[Lookup No Match Output2]"
+                  endId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2.Inputs[Union All Input 2]"
+                  name="Lookup No Match Output"
+                  startId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimStatus.Outputs[Lookup No Match Output]" />
+                <path
+                  refId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid.Paths[OLE DB Source Output]"
+                  endId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimLocationKey.Inputs[Lookup Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SEQC Preparation FactCovid"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{DBD2BBC0-4EEC-454E-A1C9-727E6B02C45D}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQC Preparation FactCovid">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQC Preparation FactCovid\SQL Truncate dwh_FactCovid"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{B527CDA8-F1DF-4B3B-8721-BD8CB51C2CD5}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL Truncate dwh_FactCovid"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:PropertyExpression
+            DTS:Name="SqlStatementSource">"TRUNCATE TABLE [dwh].[FactCovid]"</DTS:PropertyExpression>
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{5B6F6622-B329-4583-9F70-333750645E3E}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE [dwh].[FactCovid]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{749C0F69-F90A-421B-91F3-27A1533EAF52}"
+      DTS:From="Package\SEQC Preparation FactCovid"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\SEQC Load FactCovid" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssge="clr-namespace:Microsoft.SqlServer.Graph.Extended;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+        <NodeLayout
+          Size="236,42"
+          Id="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid"
+          TopLeft="23,30" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="298,126"
+          Size="298,169"
+          Id="Package\SEQC Load FactCovid"
+          TopLeft="253,266" />
+        <NodeLayout
+          Size="217,42"
+          Id="Package\SEQC Preparation FactCovid\SQL Truncate dwh_FactCovid"
+          TopLeft="27,15" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="263,112"
+          Size="263,155"
+          Id="Package\SEQC Preparation FactCovid"
+          TopLeft="267,62" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="400.25,217">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,49"
+              Start="0,0"
+              End="0,41.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="dwh_Load_FactCovid"
+          ParentId="Package"
+          Size="197,46"
+          Id="4c37c9e3-58f8-4327-8b7c-e02d9c65dfb9"
+          TopLeft="290,8">
+          <AnnotationLayout.FontInfo>
+            <mssge:FontInfo
+              Family="Tahoma"
+              Size="18"
+              Color="#FFFFFF00">
+              <mssge:FontInfo.TextDecorations>
+                <av:TextDecorationCollection />
+              </mssge:FontInfo.TextDecorations>
+            </mssge:FontInfo>
+          </AnnotationLayout.FontInfo>
+        </AnnotationLayout>
+        <AnnotationLayout
+          Text="Use the FullReload model for loading&#xA;data in a Fact table. &#xA;In future is recommended to use the &#xA;incremental model. For example, we can pass&#xA;loading date as parameter."
+          ParentId="Package"
+          FontInfo="{assembly:Null}"
+          Size="268,104"
+          Id="161b1244-8da6-4164-b104-c2f6fef5a4ea"
+          TopLeft="0,5" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="192,42"
+          Id="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLEDST dwh_FactCovid"
+          TopLeft="290,505" />
+        <NodeLayout
+          Size="130,42"
+          Id="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 2"
+          TopLeft="615,313" />
+        <NodeLayout
+          Size="164,42"
+          Id="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimStatus"
+          TopLeft="303,313" />
+        <NodeLayout
+          Size="218,42"
+          Id="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed"
+          TopLeft="278,30" />
+        <NodeLayout
+          Size="157,42"
+          Id="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimDate"
+          TopLeft="310,214" />
+        <NodeLayout
+          Size="130,42"
+          Id="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All 1"
+          TopLeft="616,215" />
+        <NodeLayout
+          Size="121,42"
+          Id="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Union All"
+          TopLeft="622,112" />
+        <NodeLayout
+          Size="203,42"
+          Id="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Deal with Unknown values"
+          TopLeft="287,416" />
+        <NodeLayout
+          Size="192,42"
+          Id="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimLocationKey"
+          TopLeft="294,115" />
+        <EdgeLayout
+          Id="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid.Paths[OLE DB Source Output]"
+          TopLeft="388.5,72">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,43"
+              Start="0,0"
+              End="0,35.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid.Paths[Lookup Match Output]"
+          TopLeft="389.25,157">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,57"
+              Start="0,0"
+              End="0,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,18.9453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid.Paths[Derived Column Output]"
+          TopLeft="387.25,458">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,47"
+              Start="0,0"
+              End="0,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <AnnotationLayout
+          Text="Заглушки"
+          ParentId="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid"
+          FontInfo="{x:Null}"
+          Size="81,40"
+          Id="6180ba3b-be00-4673-bb4b-bd10570368d1"
+          TopLeft="644,72" />
+        <EdgeLayout
+          Id="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid.Paths[Lookup Match Output1]"
+          TopLeft="386.75,256">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,57"
+              Start="0,0"
+              End="0,49.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,18.9453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid.Paths[Lookup Match Output2]"
+          TopLeft="386.75,355">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="0,61"
+              Start="0,0"
+              End="0,53.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,53.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-48.19138671875,20.9453125,96.3827734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid.Paths[Lookup No Match Output]"
+          TopLeft="486,134.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="136,0"
+              Start="0,0"
+              End="128.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="128.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="8.44361328125,5,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid.Paths[Lookup No Match Output1]"
+          TopLeft="467,235.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="149,0"
+              Start="0,0"
+              End="141.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="141.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="14.94361328125,5,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid.Paths[Lookup No Match Output2]"
+          TopLeft="467,334">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{x:Null}"
+              EndConnector="148,0"
+              Start="0,0"
+              End="140.5,0">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="140.5,0" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="14.44361328125,5,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLEDST dwh_FactCovid">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimStatus">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\OLESRC staging_Covid_typed">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimDate">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Load FactCovid\DFT Load Data to dwh_FactCovid\Lookup DimLocationKey">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:boolean">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string"></Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:int">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
